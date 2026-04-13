@@ -52,7 +52,7 @@ new.columns=["studentname","studentage"]
 print("xml to horus")
 print(new)
 
-#csv
+#json
 data=pd.read_json("student_data.json")
 new=data[["student","age"]]
 new.columns=["studentname","studentage"]
