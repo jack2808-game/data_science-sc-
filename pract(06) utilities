@@ -1,0 +1,23 @@
+from google.colab import files
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Upload file
+uploaded = files.upload()
+
+for i in uploaded:
+    print("Uploaded:", i)
+
+# Read CSV file (change name if needed)
+df = pd.read_csv("student_data.csv")
+print(df.head())
+
+# Save file
+with open("demo.txt", "w") as f:
+    f.write("Hello Colab")
+
+print("File saved")
+
+# Simple graph
+plt.plot([1,2,3],[10,20,30])
+plt.show()
