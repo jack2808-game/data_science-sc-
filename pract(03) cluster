@@ -1,0 +1,15 @@
+# Create simple data with 3 clear groups
+data <- data.frame(
+  x = c(rnorm(20, 2), rnorm(20, 10), rnorm(20, 5)),
+  y = c(rnorm(20, 2), rnorm(20, 10), rnorm(20, 5))
+)
+
+# Apply k-means clustering (3 groups)
+k <- kmeans(data, 3)
+
+# Plot the clustered data
+plot(data$x, data$y, col=c("red","blue","green"), pch=16)
+
+# Add cluster centers (star shape)
+points(k$centers, pch=8, cex=2)
+
