@@ -1,0 +1,58 @@
+import pandas as pd
+
+# =========================
+# STEP 1: CREATE DATA
+# =========================
+data = {
+    "Transaction_ID": [1, 2, 3, 4, 5],
+    "Amount": [11000, 2000, -500, 3000, 1500],
+    "Approved": ["Yes", "Yes", "No", "Yes", "Yes"]
+}
+
+df = pd.DataFrame(data)
+print("Original Data:")
+print(df)
+
+# =========================
+# STEP 2: SAVE DATA
+# =========================
+df.to_csv("audit_data.csv", index=False)
+
+# =========================
+# STEP 3: LOAD DATA
+# =========================
+df = pd.read_csv("audit_data.csv")
+
+print("\nLoaded Data:")
+print(df)
+
+# =========================
+# STEP 4: AUDIT CHECKS
+# =========================
+
+# 1. Negative values check (possible error/fraud)
+negative_values = df[df["Amount"] < 0]
+
+# 2. Unapproved transactions
+unapproved = df[df["Approved"] == "No"]
+
+# 3. Total amount
+total_amount = df["Amount"].sum()
+
+# =========================
+# STEP 5: PRINT RESULTS
+# =========================
+print("\nTotal Amount:", total_amount)
+
+print("\nNegative Transactions:")
+print(negative_values)
+
+print("\nUnapproved Transactions:")
+print(unapproved)
+
+# =========================
+# STEP 6: SAVE AUDIT REPORT
+# =========================
+df.to_csv("audit_report.csv", index=False)
+
+print("\nAudit Completed! Report saved.")
